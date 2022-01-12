@@ -1,0 +1,48 @@
+<template>
+      
+            <div v-if="pokemonExist"  class="row py-1" >
+                <div class="col-12">
+                    <img :src="pokemonObject.sprites.front_default" alt="" >
+                </div>
+                <div  class="col-12">
+                    <h2>{{pokemonObject.name}}</h2>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success"><i class="fas fa-eye"></i> See Datails</button>
+                </div>
+            </div>
+        
+   
+</template>
+
+<script>
+export default {
+
+    data(){
+        return {
+            pokemonObject:[],
+            pokemonExist:false,
+        }
+    },
+    created(){
+        this.getPokemon()
+        
+    },
+    methods: {
+        async getPokemon(){
+            await this.axios.get(this.pokemon.url).then((response)=>{
+                this.pokemonObject=response.data;
+                if(!this.pokemonExist){
+                    this.pokemonExist=true;
+                }
+            } )
+        },
+        
+    },
+    props: {
+        pokemon:{
+          type: Object
+        }
+    },
+}
+</script>
