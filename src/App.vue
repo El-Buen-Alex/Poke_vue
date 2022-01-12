@@ -44,6 +44,7 @@ export default {
   methods: {
     async getAllPokemons(){
             await this.axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response =>{
+              
                 this.pokemones=response.data;
                 this.sizePokemons=this.pokemones.count;
                 console.log(this.pokemones)
@@ -54,6 +55,7 @@ export default {
     async getNextListPokemon(){
       console.log(this.pokemones.next)
       await this.axios.get(this.pokemones.next).then(response =>{
+
                 this.pokemones=response.data;
                 console.log(this.pokemones)
             }).catch(error=>{
@@ -80,7 +82,7 @@ export default {
        await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`).then(() =>{
           this.$router.push({name:'showPokemon'})
          this.pokemones.results=[
-           {
+           { 
              name: this.namePokemon,
              url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
            }

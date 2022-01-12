@@ -4,6 +4,10 @@ const pokemonTemplate=()=>import('./components/pokemon/pokemonTemplate.vue')
 const pokemonNotFound=()=>import('./components/errors/pokemonNotFound.vue')
 export const routes =[
     {
+        path:'*',
+        redirect : '/showPokemon'
+    },
+    {
         name:'showPokemon',
         path:'/showPokemon',
         component:showPokemon,
