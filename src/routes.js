@@ -15,15 +15,13 @@ export const routes =[
             {
                 name:'pokemonList',
                 path:'/pokemonList',
-                component:pokemonTemplate
-            },
-            
+                component:pokemonTemplate, 
+            },   
         ]
     },
     {
         name:'pokemonNotFound',
         path:'/notFound',
         component: pokemonNotFound
-
     }
 ]

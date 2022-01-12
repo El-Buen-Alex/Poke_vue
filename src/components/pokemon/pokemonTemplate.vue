@@ -1,5 +1,4 @@
 <template>
-      
             <div v-if="pokemonExist"  class="row py-1" >
                 <div class="col-12">
                     <img :src="pokemonObject.sprites.front_default" alt="" >
@@ -11,8 +10,6 @@
                     <button class="btn btn-success"><i class="fas fa-eye"></i> See Datails</button>
                 </div>
             </div>
-        
-   
 </template>
 
 <script>

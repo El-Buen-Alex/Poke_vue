@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <router-view :pokemonList="pokemones.results"></router-view>
+      <router-view :pokemonList="pokemones.results" ></router-view>
     </div>
     <paginationVue v-on:requestNextList="getNextListPokemon" v-on:requestPrevList="getPrevListPokemon"></paginationVue>
   
@@ -44,7 +44,6 @@ export default {
   methods: {
     async getAllPokemons(){
             await this.axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response =>{
-              
                 this.pokemones=response.data;
                 this.sizePokemons=this.pokemones.count;
                 console.log(this.pokemones)
@@ -80,7 +79,10 @@ export default {
     },
     async getPokemonByName(){
        await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`).then(() =>{
-          this.$router.push({name:'showPokemon'})
+         if(this.$route.name!="showPokemon"){
+            this.$router.push({name:'showPokemon'})
+        }
+        
          this.pokemones.results=[
            { 
              name: this.namePokemon,
