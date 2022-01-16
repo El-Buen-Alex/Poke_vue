@@ -1,5 +1,5 @@
 <template>
-    <!-- 
+    
     <div class="overlay" >
         <div class="popup">
             <div class="card">
@@ -8,13 +8,13 @@
                 </div>
                 <slot/>
                 <div class="pb-2 ps-2">
-                    <button type="submit" :class="propertiesConfirmButton.class" @click="actionConfirmButton">{{propertiesConfirmButton.text}}</button>
-                    <button class="btn btn-primary" @click="closepopup">Cancel</button>    
+                    <!-- <button type="submit" :class="propertiesConfirmButton.class" @click="actionConfirmButton">{{propertiesConfirmButton.text}}</button> -->
+                    <button class="btn btn-success" @click="closepopup">OK!</button>    
                 </div>
             </div>
         </div>
-    </div> -->
-    <div class="modal-viewA">
+    </div>
+    <!-- <div class="modal-viewA">
         <transition name="fade">
             <div class="modal-overlay" v-if="showModal"></div>
         </transition>
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </transition>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -47,23 +47,23 @@ export default {
             showModal:false,
         }
     },
-    /*props:{
-        //accion que hará el boton de confirmar, la pasas como props desde donde se pone la etiqeuat modal
-        actionConfirmButton:{
-            type:Function,
+    props:{
+        // //accion que hará el boton de confirmar, la pasas como props desde donde se pone la etiqeuat modal
+        // actionConfirmButton:{
+        //     type:Function,
             
-        },
+        // },
         //un object donde le pasas la clase en este caso de boostrap que tendrá el boton y el nombre
         propertiesConfirmButton:{
             type:Object,
         }
-    },*/
+    },
     methods:{ 
-        /*closepopup(e){
+        closepopup(e){
             const modal=e.target.parentNode.parentNode.parentNode;
             modal.style.display="none"
             this.$router.go(-1)
-        }*/
+        }
     }    
 }
 </script>

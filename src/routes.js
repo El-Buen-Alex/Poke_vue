@@ -2,6 +2,7 @@
 const showPokemon =()=>import('./components/pokemon/showPokemon.vue')
 const pokemonTemplate=()=>import('./components/pokemon/pokemonTemplate.vue')
 const pokemonNotFound=()=>import('./components/errors/pokemonNotFound.vue')
+const  showDetailsPokemonVue =()=>import( './components/pokemon/detailsPoekom/showDetailsPokemon.vue')
 export const routes =[
     {
         path:'*',
@@ -16,7 +17,12 @@ export const routes =[
                 name:'pokemonList',
                 path:'/pokemonList',
                 component:pokemonTemplate, 
-            },   
+            },
+            {
+                name:'pokemonDetail',
+                path:'/detailsPokemon',
+                component:showDetailsPokemonVue
+            }  
         ]
     },
     {

@@ -7,7 +7,7 @@
                     <h2>{{pokemonObject.name}}</h2>
                 </div>
                 
-                <transition name="fade">
+                <!-- <transition name="fade">
                     <div class="modal-overlay" v-if="showModal"></div>
                 </transition>
                 <transition name="fade">
@@ -31,11 +31,18 @@
                 
                 <div class="d-grid gap-2">
                     <button @click = "showModal = true" class="btn btn-success"><i class="fas fa-eye"></i> See Datails</button>
+                </div> -->
+                <div class="d-grid gap-2">
+                    <button @click = "showModalInfo" class="btn btn-success"><i class="fas fa-eye"></i> See Datails</button>
                 </div>
+               
             </div>
 </template>
 
 <script>
+
+
+
 export default {
 
     data(){
@@ -58,12 +65,17 @@ export default {
             } )
             console.log(this.pokemonObject)
         },
+        showModalInfo(){
+           
+            this.$emit('sendPokemon', this.pokemonObject)
+            
+        }
     },
     props: {
         pokemon:{
           type: Object
         }
-    },
+    }
 }
 </script>
 
