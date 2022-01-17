@@ -34,6 +34,5 @@ export default {
     components:{
         pokemonTemplateVue
     }
-   
 }
 </script>
