@@ -1,6 +1,6 @@
 <template>
    <div class="container">
-        <div class="comments ">
+        <div class="tittle">
             <h4>Comentarios</h4>
         
 
@@ -79,15 +79,30 @@ export default{
 <style scoped>
 .scrolls{
      position: absolute;
-        width:45%;
-        max-width: 50%;
+        width:80%;
+        max-width: 100%;
         padding:1rem;
-       
+
         height: 200px;
 	overflow-y: scroll;
 }
 .abajo-s{
     position: relative;
     bottom: -175px;
+}
+
+@media (min-width: 768px) {
+    .scrolls{
+     position: absolute;
+        width:38%;
+        max-width: 50%;
+        padding:1rem;
+       
+        height: 200px;
+	overflow-y: scroll;
+}
+}
+.tittle{
+    display: inline-block;
 }
 </style>

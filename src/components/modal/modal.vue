@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
                 </div>
                 <slot/>
-                <div class="pb-2 ps-2">
+                <div class="pb-2 ps-2 resp-button">
                     <button class="btn btn-success" @click="closepopup">OK!</button>    
                 </div>
             </div>
@@ -53,18 +53,49 @@ export default {
     .popup{
         position: absolute;
         width:80%;
-        max-width: 50%;
+        max-width: 100%;
+        background-color:white;
+        padding:1rem;
+        border-radius: 0.5rem;
+        height: 80%;
+        
+    }
+    @media (min-width: 768px) {
+         .popup{
+        position: absolute;
+        width:80%;
+        max-width: 40%;
         background-color:white;
         padding:1rem;
         border-radius: 0.5rem;
         height: 400px;
         
     }
+    }
+    @media (min-width: 768px) {
+        .modals{
+        background: rgb(0, 225, 255);
+    }
+    }
     .modals{
         background: rgb(0, 225, 255);
+        height: 100%;
+
     }
     .texto {
         padding:4px;
         background:#fff;
     }
+    
+
+    
+    .resp-button{
+        margin-top: 165px;
+    } 
+@media (min-width: 768px) {
+       .resp-button{
+        margin-top: 30px;
+    } 
+    }
+   
 </style>
