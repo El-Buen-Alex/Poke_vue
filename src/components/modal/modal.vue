@@ -63,8 +63,8 @@ export default {
     @media (min-width: 768px) {
          .popup{
         position: absolute;
-        width:80%;
-        max-width: 40%;
+        width:100%;
+        max-width: 45%;
         background-color:white;
         padding:1rem;
         border-radius: 0.5rem;
@@ -90,7 +90,7 @@ export default {
 
     
     .resp-button{
-        margin-top: 165px;
+        margin-top: 125px;
     } 
 @media (min-width: 768px) {
        .resp-button{

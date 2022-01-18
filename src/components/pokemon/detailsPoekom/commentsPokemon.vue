@@ -7,33 +7,24 @@
 
         </div>
         <div class="" v-if="commentExist">
-          
+            <div v-for="(comentario,index) in pokemonComment" :key="index">
+                <p>{{comentario}}</p>
+            </div>
             
         </div>
         <div class="scrolls" v-else>
             <p class="">No existen comentarios</p>
-             <p>1</p>
-            <p>1</p>
-            <p>1</p>
-            <p>1</p>
-            <p>1</p>
-             <p>1</p>
-            <p>1</p>
-            <p>1</p>
-             <p>1</p>
-            <p>1</p>
-            <p>1</p>
-             <p>Comentarios</p>
-            <p>Comentarios</p>
-            <p>Comentarios</p>
+             
+          
            
             
         </div>
         
         <div class="input-group mb-3 abajo-s">
-            <input type="text" class="form-control " placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input type="text" class="form-control " placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="savedComments()">Bu</button>
         </div>
+        
    </div>
 </template>
 
@@ -43,6 +34,7 @@ export default{
         return{
             pokemonComment:[],
             commentExist: Boolean,
+            texto:""
         }
         
     },
@@ -63,15 +55,30 @@ export default{
 
             }else{
                 this.commentExist = true;
+                this.getComments();
 
             }
              
         },
         getComments(){
             const comentariosPokemon = localStorage.getItem(this.idPokemon);
-            this.pokemonComment = JSON.parse(comentariosPokemon);
             console.log(comentariosPokemon);
+            this.pokemonComment = JSON.parse(comentariosPokemon);
+            console.log("----------------------------------------");
+            console.log(this.comentariosPokemon);
+            /* falta pintarlos */
         },
+        savedComments(){
+            /* verificar si hay un array con el mismo nombre? */
+            const comentarioAgregado = this.texto;
+
+            this.pokemonComment = this.pokemonComment.push(comentarioAgregado)
+            localStorage.setItem(this.idPokemon, JSON.stringify(this.pokemonComment));
+
+            if (this.commentExist === false) {
+                this.commentExist = true;
+            } 
+        }
     }
 }
 </script>
