@@ -10,7 +10,7 @@
                     <p>Peso = {{pokemonInformation.weight}}</p>
                     <p>Altura = {{pokemonInformation.height}}0 cm</p>
                 </div>
-                <div class="col-12 col-md-6 mensajes">
+                <div class="col-12 col-md-6">
                     <Comments :idPokemon="pokemonInformation.id">
                         
                     </Comments>

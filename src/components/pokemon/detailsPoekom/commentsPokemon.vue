@@ -90,17 +90,9 @@ export default{
 	overflow-y: scroll;
 }
 
-
-@media (min-width: 768px) {
-    .scrolls{
-     position: absolute;
-        width:38%;
-        max-width: 50%;
-        padding:1rem;
-       
-        height: 200px;
-	overflow-y: scroll;
-}
+.abajo-s{
+    position: relative;
+    bottom: -175px;
 }
 .tittle{
     display: inline-block;

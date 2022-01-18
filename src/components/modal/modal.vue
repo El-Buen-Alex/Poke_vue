@@ -74,7 +74,7 @@ export default {
     }
     @media (min-width: 768px) {
         .modals{
-        background: rgb(0, 225, 255);
+        background: rgb(170, 202, 206);
     }
     }
     .modals{
@@ -82,13 +82,8 @@ export default {
         height: 100%;
 
     }
-    .texto {
-        padding:4px;
-        background:#fff;
-    }
-    
-
-    
+  
+  
     .resp-button{
         margin-top: 125px;
     } 
