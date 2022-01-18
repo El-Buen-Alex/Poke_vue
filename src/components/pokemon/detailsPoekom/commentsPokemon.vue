@@ -6,23 +6,24 @@
 
 
         </div>
-        <div class="" v-if="commentExist">
+        <div class="scrolls" v-if="commentExist">
             <div v-for="(comentario,index) in pokemonComment" :key="index">
-                <p>{{comentario}}</p>
+                <div class="card my-2">
+<p>{{comentario}}</p>
+                </div>
+                
             </div>
             
         </div>
-        <div class="scrolls" v-else>
-            <p class="">No existen comentarios</p>
-             
-          
+        <div class="" v-else>
            
+<p class="">No existen comentarios</p>
             
         </div>
         
-        <div class="input-group mb-3 abajo-s">
+        <div class="input-group mb-3 abajo-s mt-2">
             <input type="text" class="form-control " placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="savedComments()">Bu</button>
+            <button class="btn btn-primary" type="button" id="button-addon2" @click="savedComments()">Bu</button>
         </div>
         
    </div>
@@ -61,18 +62,13 @@ export default{
              
         },
         getComments(){
-            const comentariosPokemon = localStorage.getItem(this.idPokemon);
-            console.log(comentariosPokemon);
-            this.pokemonComment = JSON.parse(comentariosPokemon);
-            console.log("----------------------------------------");
-            console.log(this.comentariosPokemon);
+            let data = localStorage.getItem(this.idPokemon);
+            this.pokemonComment = JSON.parse(data);
             /* falta pintarlos */
         },
         savedComments(){
             /* verificar si hay un array con el mismo nombre? */
-            const comentarioAgregado = this.texto;
-
-            this.pokemonComment = this.pokemonComment.push(comentarioAgregado)
+            this.pokemonComment.push(this.texto)
             localStorage.setItem(this.idPokemon, JSON.stringify(this.pokemonComment));
 
             if (this.commentExist === false) {
@@ -93,10 +89,7 @@ export default{
         height: 200px;
 	overflow-y: scroll;
 }
-.abajo-s{
-    position: relative;
-    bottom: -175px;
-}
+
 
 @media (min-width: 768px) {
     .scrolls{
