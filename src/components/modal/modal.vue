@@ -1,7 +1,7 @@
 <template>
     
     <div class="overlay" >
-        <div class="popup">
+        <div class="popup" id="global" >
             <div class="card modals">
                 <div class="d-flex flex-row-reverse py-1 pe-1">
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
@@ -53,13 +53,18 @@ export default {
     .popup{
         position: absolute;
         width:80%;
-        max-width: 512px;
+        max-width: 50%;
         background-color:white;
         padding:1rem;
         border-radius: 0.5rem;
-        box-shadow:2px 5px 10px rgba(0,0,0,0.1);
+        height: 400px;
+        
     }
     .modals{
         background: rgb(0, 225, 255);
+    }
+    .texto {
+        padding:4px;
+        background:#fff;
     }
 </style>

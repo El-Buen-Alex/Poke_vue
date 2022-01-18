@@ -1,18 +1,37 @@
 <template>
-   <div class="containerrr">
-        <div class="comments">
+   <div class="container">
+        <div class="comments ">
             <h4>Comentarios</h4>
-            <p>hola mi id es {{idPokemon}}</p>
+        
+
 
         </div>
-        <div v-if="commentExist">
+        <div class="" v-if="commentExist">
+          
             
         </div>
-        <div v-else>
-            <p>No existen comentarios</p>
+        <div class="scrolls" v-else>
+            <p class="">No existen comentarios</p>
+             <p>1</p>
+            <p>1</p>
+            <p>1</p>
+            <p>1</p>
+            <p>1</p>
+             <p>1</p>
+            <p>1</p>
+            <p>1</p>
+             <p>1</p>
+            <p>1</p>
+            <p>1</p>
+             <p>Comentarios</p>
+            <p>Comentarios</p>
+            <p>Comentarios</p>
+           
+            
         </div>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2">
+        
+        <div class="input-group mb-3 abajo-s">
+            <input type="text" class="form-control " placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="savedComments()">Bu</button>
         </div>
    </div>
@@ -58,5 +77,17 @@ export default{
 </script>
 
 <style scoped>
-
+.scrolls{
+     position: absolute;
+        width:45%;
+        max-width: 50%;
+        padding:1rem;
+       
+        height: 200px;
+	overflow-y: scroll;
+}
+.abajo-s{
+    position: relative;
+    bottom: -175px;
+}
 </style>
