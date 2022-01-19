@@ -3,11 +3,12 @@
     <div class="overlay" >
         <div class="popup" id="global" >
             <div class="card modals">
+                
                 <div class="d-flex flex-row-reverse py-1 pe-1">
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
                 </div>
                 <slot/>
-                <div class="pb-2 ps-2 resp-button">
+                <div class="pb-2 ps-2 ">
                     <button class="btn btn-success" @click="closepopup">OK!</button>    
                 </div>
             </div>
@@ -72,11 +73,7 @@ export default {
         
     }
     }
-    @media (min-width: 768px) {
-        .modals{
-        background: rgb(170, 202, 206);
-    }
-    }
+  
     .modals{
         background: rgb(0, 225, 255);
         height: 100%;
@@ -84,13 +81,5 @@ export default {
     }
   
   
-    .resp-button{
-        margin-top: 125px;
-    } 
-@media (min-width: 768px) {
-       .resp-button{
-        margin-top: 30px;
-    } 
-    }
    
 </style>

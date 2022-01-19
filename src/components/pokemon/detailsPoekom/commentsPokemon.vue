@@ -1,28 +1,22 @@
 <template>
-   <div class="container">
+   <div class="container h-75">
         <div class="tittle">
             <h4>Comentarios</h4>
-        
-
-
         </div>
-        <div class="scrolls" v-if="commentExist">
+        
+        <div class="overflow-auto w-100 h-50 boxComent" v-if="commentExist" >
             <div v-for="(comentario,index) in pokemonComment" :key="index">
-                <div class="card my-2">
-<p>{{comentario}}</p>
+                <div class="card my-2 mx-1">
+                    <p>{{comentario}}</p>
                 </div>
-                
             </div>
-            
         </div>
-        <div class="" v-else>
-           
-<p class="">No existen comentarios</p>
-            
+        <div class="h-75" v-else>
+            <p class="">No existen comentarios</p>
         </div>
         
-        <div class="input-group mb-3 abajo-s mt-2">
-            <input type="text" class="form-control " placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
+        <div class="input-group mb-3 mt-2 ">
+            <input type="text" class="form-control"  placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
             <button class="btn btn-primary" type="button" id="button-addon2" @click="savedComments()">Bu</button>
         </div>
         
@@ -70,10 +64,10 @@ export default{
             /* verificar si hay un array con el mismo nombre? */
             this.pokemonComment.push(this.texto)
             localStorage.setItem(this.idPokemon, JSON.stringify(this.pokemonComment));
-
             if (this.commentExist === false) {
                 this.commentExist = true;
             } 
+            this.texto="";
         }
     }
 }
@@ -90,11 +84,11 @@ export default{
 	overflow-y: scroll;
 }
 
-.abajo-s{
-    position: relative;
-    bottom: -175px;
-}
+
 .tittle{
     display: inline-block;
+}
+.boxComent{
+    max-height: 350px;
 }
 </style>

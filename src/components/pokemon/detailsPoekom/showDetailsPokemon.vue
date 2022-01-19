@@ -1,10 +1,13 @@
 <template>
     <Modal>
-        <div class="container">
+        <div class="container h-75">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <img :src="pokemonInformation.sprites.front_default" alt="">
+                    <div>
+ <img :src="pokemonInformation.sprites.front_default" alt="">
                     <img :src="pokemonInformation.sprites.back_default" alt="">
+                    </div>
+                   
                     <h4>{{pokemonInformation.name}}</h4>
                     <p>Id = {{pokemonInformation.id}}</p>
                     <p>Peso = {{pokemonInformation.weight}}</p>
