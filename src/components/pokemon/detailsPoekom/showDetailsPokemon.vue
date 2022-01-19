@@ -3,9 +3,15 @@
         <div class="container h-75">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div>
- <img :src="pokemonInformation.sprites.front_default" alt="">
-                    <img :src="pokemonInformation.sprites.back_default" alt="">
+                    <div class="row">
+                        <div class="col-6">
+                            <img class="h-100"  :src="pokemonInformation.sprites.front_default" alt="">
+                        </div>
+                         <div class="col-6">
+                            <img class="h-100"  :src="pokemonInformation.sprites.back_default" alt="">
+                        </div>
+                        
+                   
                     </div>
                    
                     <h4>{{pokemonInformation.name}}</h4>

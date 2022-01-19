@@ -3,8 +3,8 @@
         <div class="tittle">
             <h4>Comentarios</h4>
         </div>
-        
-        <div class="overflow-auto w-100 h-50 boxComent" v-if="commentExist" >
+
+        <div class="overflow-auto w-100 boxComent h-50 " v-if="commentExist" >
             <div v-for="(comentario,index) in pokemonComment" :key="index">
                 <div class="card my-2 mx-1">
                     <p>{{comentario}}</p>
@@ -15,7 +15,7 @@
             <p class="">No existen comentarios</p>
         </div>
         
-        <div class="input-group mb-3 mt-2 ">
+        <div class="input-group mb-3 mt-2">
             <input type="text" class="form-control"  placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
             <button class="btn btn-primary" type="button" id="button-addon2" @click="savedComments()">Bu</button>
         </div>
@@ -89,6 +89,13 @@ export default{
     display: inline-block;
 }
 .boxComent{
-    max-height: 350px;
+    max-height: 100px;
 }
+@media (min-width: 768px) {
+    .boxComent{
+       
+        max-height: 350px;
+}
+}
+
 </style>
