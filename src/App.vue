@@ -33,6 +33,7 @@ export default {
         pokemones:[],
             sizePokemons:0,
             namePokemon:'',
+            inputTimeStamp:0,
     } 
   },
   components: {
@@ -69,12 +70,36 @@ export default {
                 console.log(error)
             })
     },
-    searchPokemon(){
-      if(this.namePokemon.length>4){
-        this.getPokemonByName();
-      }else if(this.namePokemon==""){
-        this.$router.push({name:'showPokemon'})
-        this.getAllPokemons()
+    searchPokemon(event){
+      // if(this.namePokemon.length>4){
+      //   this.getPokemonByName();
+      // }else if(this.namePokemon==""){
+      //   this.$router.push({name:'showPokemon'})
+      //   this.getAllPokemons()
+      // }
+
+      // const timeOut=setTimeout(()=>{
+      //   console.log("zorro beta")
+      //   this.getPokemonByName();
+      // },1000)
+      // return ()=>{
+      //   clearTimeout(timeOut)
+      //   console.log("deberia borrar")
+      // }
+      if(event.keyCode!==13){
+        this.inputTimeStamp=event.timeStamp;
+        setTimeout(()=>{
+          if(this.inputTimeStamp==event.timeStamp){
+            if(this.namePokemon==""){
+              this.$router.push({name:'showPokemon'})
+              this.getAllPokemons()
+            }else{
+               this.getPokemonByName();
+            }
+          }
+        },250);
+      }else{
+        console.log ('Enviar solicitud');
       }
     },
     async getPokemonByName(){
@@ -89,7 +114,8 @@ export default {
              url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
            }
          ];
-      }).catch(()=>{
+      }).catch((e)=>{
+        console.log(e)
         if(this.$route.name!="pokemonNotFound"){
           this.$router.push({name:'pokemonNotFound'})
         }

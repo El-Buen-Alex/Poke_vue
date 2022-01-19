@@ -50,6 +50,8 @@ export default {
         display:flex;
         justify-content:center;
         align-items:center;
+        z-index:1;
+        
     }
     .popup{
         position: absolute;
@@ -58,8 +60,7 @@ export default {
         background-color:white;
         padding:1rem;
         border-radius: 0.5rem;
-        height: 80%;
-        
+        height: 80%;   
     }
     @media (min-width: 768px) {
          .popup{
@@ -69,7 +70,7 @@ export default {
         background-color:white;
         padding:1rem;
         border-radius: 0.5rem;
-        height: 400px;
+        height: 400px;  
         
     }
     }
@@ -77,7 +78,4 @@ export default {
         background: rgb(0, 225, 255);
         height: 100%;
     }
-    
-
-
 </style>

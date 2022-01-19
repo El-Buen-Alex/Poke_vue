@@ -4,7 +4,7 @@
             <h4>Comentarios</h4>
         </div>
 
-        <div class="overflow-auto w-100 boxComent h-50 " v-if="commentExist" >
+        <div class="overflow-auto w-100 boxComent" v-if="commentExist" >
             <div v-for="(comentario,index) in pokemonComment" :key="index">
                 <div class="card my-2 mx-1">
                     <p>{{comentario}}</p>
@@ -89,12 +89,13 @@ export default{
     display: inline-block;
 }
 .boxComent{
-    max-height: 100px;
+    height: 80px;
+    max-height: 90%;
 }
 @media (min-width: 768px) {
     .boxComent{
-       
-        max-height: 350px;
+        height: 150px;
+        max-height: 90%;
 }
 }
 
