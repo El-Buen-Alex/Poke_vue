@@ -7,7 +7,7 @@
         <div class="overflow-auto w-100 boxComent" v-if="commentExist" >
             <div v-for="(comentario,index) in pokemonComment" :key="index">
                 <div class="card my-2 mx-1">
-                    <p>{{comentario}}</p>
+                    <p class="d-flex align-items-center justify-content-center pt-2">{{comentario}}</p>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
     
     <div class="overlay" >
         <div class="popup" id="global" >
-            <div class="card modals">
+            <div class="card" :style="'background-color:'+fondoPokemon">
                 
                 <div class="d-flex flex-row-reverse py-1 pe-1">
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
@@ -28,7 +28,10 @@ export default {
         //un object donde le pasas la clase en este caso de boostrap que tendrá el boton y el nombre
         propertiesConfirmButton:{
             type:Object,
-        }
+        },
+        fondoPokemon:{
+            type: String,
+        },
     },
     methods:{ 
         closepopup(e){
