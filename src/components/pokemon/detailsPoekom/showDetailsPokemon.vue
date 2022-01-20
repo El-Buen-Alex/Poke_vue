@@ -1,8 +1,8 @@
 <template>
-    <Modal v-show="existeFondo && pokemonInformation" :fondoPokemon="fondo">
+    <Modal v-show="pokemonInformation" :fondoPokemon="getFondo">
         <div class="container h-75">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 ">
                     <div class="row">
                         <div class="col-6">
                             <img class="h-100"  :src="pokemonInformation.sprites.front_default" alt="">
@@ -37,7 +37,6 @@ export default {
     data(){
         return{
             id: "1",
-            fondo: "",
             existeFondo:false,
             colours: {
                 normal: '#A8A77A',
@@ -71,24 +70,22 @@ export default {
         }
     },
     methods: {
-        setFondo(){
-            const tipo = this.pokemonInformation.types[0].type.name;
-            for (const property in this.colours) {
-                if(tipo==property){
-                    this.fondo=this.colours[property];
-                    this.existeFondo=true
-                }
-            }
-        },
-       back(){
-             this.$router.go(-1)
-        }
+       
+      
     },
     mounted() {
-        this.setFondo()
-        
     },
-   
+    computed: {
+        getFondo:function(){
+            let tipo = this.pokemonInformation.types[0].type.name;
+            for (const property in this.colours) {
+                if(tipo==property){
+                    return this.colours[property];
+                }
+            }
+            return ""  
+        }
+    },
 }
 </script>
 

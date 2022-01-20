@@ -1,5 +1,4 @@
 <template>
-    
     <div class="overlay" >
         <div class="popup" id="global" >
             <div class="card" :style="'background-color:'+fondoPokemon">
@@ -49,7 +48,7 @@ export default {
         left:0;
         width:100%;
         height:100%;
-        background-color:rgba(0,0,0,0.295);
+        background-color:rgba(0,0,0,0.395);
         display:flex;
         justify-content:center;
         align-items:center;
@@ -77,8 +76,5 @@ export default {
         
     }
     }
-    .modals{
-        background: rgb(0, 225, 255);
-        height: 100%;
-    }
+   
 </style>
