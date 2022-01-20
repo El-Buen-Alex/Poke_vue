@@ -17,7 +17,7 @@
       </div>
       <router-view :pokemonList="pokemones.results" ></router-view>
     </div>
-    <paginationVue v-on:requestNextList="getNextListPokemon" v-on:requestPrevList="getPrevListPokemon"></paginationVue>
+    <paginationVue v-on:goHome="getAllPokemons" v-on:requestNextList="getNextListPokemon" v-on:requestPrevList="getPrevListPokemon" v-on:goToPage="getPokemonsByPagination"></paginationVue>
   
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
             await this.axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response =>{
                 this.pokemones=response.data;
                 this.sizePokemons=this.pokemones.count;
-                console.log(this.pokemones)
+               console.log(this.pokemones)
             }).catch(error=>{
                 console.log(error)
             })
@@ -55,9 +55,8 @@ export default {
     async getNextListPokemon(){
       console.log(this.pokemones.next)
       await this.axios.get(this.pokemones.next).then(response =>{
-
                 this.pokemones=response.data;
-                console.log(this.pokemones)
+              
             }).catch(error=>{
                 console.log(error)
             })
@@ -65,61 +64,52 @@ export default {
     async getPrevListPokemon(){
       await this.axios.get(this.pokemones.previous).then(response =>{
                 this.pokemones=response.data;
-                console.log(this.pokemones)
+               
             }).catch(error=>{
                 console.log(error)
             })
     },
     searchPokemon(event){
-      // if(this.namePokemon.length>4){
-      //   this.getPokemonByName();
-      // }else if(this.namePokemon==""){
-      //   this.$router.push({name:'showPokemon'})
-      //   this.getAllPokemons()
-      // }
-
-      // const timeOut=setTimeout(()=>{
-      //   console.log("zorro beta")
-      //   this.getPokemonByName();
-      // },1000)
-      // return ()=>{
-      //   clearTimeout(timeOut)
-      //   console.log("deberia borrar")
-      // }
       if(event.keyCode!==13){
         this.inputTimeStamp=event.timeStamp;
         setTimeout(()=>{
           if(this.inputTimeStamp==event.timeStamp){
-            if(this.namePokemon==""){
+            if(this.namePokemon.trim()!=""){
               this.$router.push({name:'showPokemon'})
               this.getAllPokemons()
             }else{
                this.getPokemonByName();
             }
           }
-        },250);
+        },500);
       }else{
         console.log ('Enviar solicitud');
       }
     },
     async getPokemonByName(){
        await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`).then(() =>{
-         if(this.$route.name!="showPokemon"){
-            this.$router.push({name:'showPokemon'})
-        }
-        
          this.pokemones.results=[
            { 
              name: this.namePokemon,
              url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
            }
          ];
-      }).catch((e)=>{
-        console.log(e)
+          if(this.$route.name!="showPokemon"){
+            this.$router.push({name:'showPokemon'})
+        }
+      }).catch(()=>{
         if(this.$route.name!="pokemonNotFound"){
           this.$router.push({name:'pokemonNotFound'})
         }
       })
+    },
+    async getPokemonsByPagination(pagination){
+       await this.axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${pagination*20}&limit=20`).then(response =>{
+                this.pokemones=response.data;
+                console.log(this.pokemones)
+            }).catch(error=>{
+                console.log(error)
+        })
     }
   }
 }
