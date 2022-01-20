@@ -8,7 +8,7 @@
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
                 </div>
                 <slot/>
-                <div class="pb-2 ps-2 mt-5 mt-md-2">
+                <div class="pb-2 ps-2 mt-1 mt-md-2">
                     <button class="btn btn-success" @click="closepopup">OK!</button>    
                 </div>
             </div>

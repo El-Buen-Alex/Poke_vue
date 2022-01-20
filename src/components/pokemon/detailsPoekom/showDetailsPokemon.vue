@@ -1,5 +1,5 @@
 <template>
-    <Modal :fondoPokemon="fondo">
+    <Modal v-show="existeFondo && pokemonInformation" :fondoPokemon="fondo">
         <div class="container h-75">
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -38,6 +38,7 @@ export default {
         return{
             id: "1",
             fondo: "",
+            existeFondo:false,
             colours: {
                 normal: '#A8A77A',
                 fire: '#EE8130',
@@ -72,17 +73,15 @@ export default {
     methods: {
         setFondo(){
             const tipo = this.pokemonInformation.types[0].type.name;
-            console.log("hola if");
             for (const property in this.colours) {
                 if(tipo==property){
-                    console.log(`${property}: ${this.colours[property]}`);
                     this.fondo=this.colours[property];
-                    console.log(this.fondo);
+                    this.existeFondo=true
                 }
             }
         }
     },
-    created() {
+    mounted() {
         this.setFondo()
     },
 }

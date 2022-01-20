@@ -7,11 +7,11 @@
         <div class="overflow-auto w-100 boxComent" v-if="commentExist" >
             <div v-for="(comentario,index) in pokemonComment" :key="index">
                 <div class="card my-2 mx-1">
-                    <p class="d-flex align-items-center justify-content-center pt-2">{{comentario}}</p>
+                    <p class="d-flex align-items-center justify-content-center pt-2 text-break">{{comentario}}</p>
                 </div>
             </div>
         </div>
-        <div class="h-75" v-else>
+        <div class="boxComent" v-else>
             <p class="">No existen comentarios</p>
         </div>
         
@@ -39,7 +39,7 @@ export default{
     },
     props:{
         idPokemon:{
-            type: String,
+            type: Number,
             required: true
         },
     },
@@ -47,21 +47,16 @@ export default{
         verificarArray(){
             if (localStorage.getItem(this.idPokemon) === null) {
                 this.commentExist = false;
-
             }else{
                 this.commentExist = true;
                 this.getComments();
-
             }
-             
         },
         getComments(){
             let data = localStorage.getItem(this.idPokemon);
             this.pokemonComment = JSON.parse(data);
-            /* falta pintarlos */
         },
         savedComments(){
-            /* verificar si hay un array con el mismo nombre? */
             this.pokemonComment.push(this.texto)
             localStorage.setItem(this.idPokemon, JSON.stringify(this.pokemonComment));
             if (this.commentExist === false) {
@@ -97,6 +92,8 @@ export default{
         height: 150px;
         max-height: 90%;
 }
+
 }
+
 
 </style>
