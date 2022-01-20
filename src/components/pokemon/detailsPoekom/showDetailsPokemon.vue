@@ -79,11 +79,16 @@ export default {
                     this.existeFondo=true
                 }
             }
+        },
+       back(){
+             this.$router.go(-1)
         }
     },
     mounted() {
         this.setFondo()
+        
     },
+   
 }
 </script>
 

@@ -35,11 +35,11 @@ export default {
         nextPage(){
            
            if(this.actualPage<55){
-               this.actualPage=this.actualPage+1
-               this.sumarPagination()
+                this.actualPage=this.actualPage+1
+                this.sumarPagination()
                 this.$emit("goToPage",this.actualPage)
-                 this.removeFocus()
-                 this.setFocusById(this.actualPage+1)
+                this.removeFocus()
+                this.setFocusById(this.actualPage+1)
            }else if(this.actualPage==56){
                this.classNextButton="page-item disabled"
            }
@@ -48,8 +48,8 @@ export default {
          prevPage(){
                 if(this.actualPage>0){
                     this.restarPagination()
-                     this.removeFocus()
-                     this.setFocusById(this.actualPage)
+                    this.removeFocus()
+                    this.setFocusById(this.actualPage)
                     this.actualPage=this.actualPage-1;
                     this.$emit("goToPage",this.actualPage)
                 }else if(this.actualPage==0){
@@ -60,22 +60,19 @@ export default {
         },
         pintar(event){
             const item=event.target.text
-             console.log(item)
-             this.refreshPages(item)
+            this.refreshPages(item)
             if(item==1){
                  this.$emit("goHome")
             }else{
                  this.$emit("goToPage",item-1)
             }
             this.actualPage=item-1;
-             this.setAccesibilityNextPrev()
-             this.manageFocus(event)
+            this.setAccesibilityNextPrev()
+            this.manageFocus(event)
         },
         refreshPages(item){
-            
             if(this.pages[2]>2 && this.pages[1]!=item ){
                 if(this.pages[0]==item){
-                    console.log("debo restar "+item)
                     this.restarPagination()
                 }else{
                     this.sumarPagination()
@@ -93,7 +90,6 @@ export default {
             }
         },
         setAccesibilityNextPrev(){
-            console.log("controlando  "+this.actualPage)
             if(this.actualPage==0){
                 this.classPrevButton=this.classPrevButton+" disabled"
             }else if(this.actualPage==56){
@@ -105,10 +101,8 @@ export default {
         },
         manageFocus(item){
             const focusItem=" text-light bg-success"
-            console.log(item)
             this.removeFocus()
             item.target.classList+=focusItem
-            console.log(item)
         },
         setFocusById(id){
             const item=document.getElementById(id)

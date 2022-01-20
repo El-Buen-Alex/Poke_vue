@@ -10,7 +10,7 @@
           <div class="col-12 col-md-4 ">
                <div class=" input-group mb-3 pt-3" >
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                  <input @input="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
+                  <input @keyup="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
               </div>  
           </div>
         </div>
@@ -33,7 +33,8 @@ export default {
         pokemones:[],
             sizePokemons:0,
             namePokemon:'',
-            inputTimeStamp:0,
+            timer:Object,
+            cancel:null,
     } 
   },
   components: {
@@ -47,13 +48,11 @@ export default {
             await this.axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response =>{
                 this.pokemones=response.data;
                 this.sizePokemons=this.pokemones.count;
-               console.log(this.pokemones)
             }).catch(error=>{
                 console.log(error)
             })
     },
     async getNextListPokemon(){
-      console.log(this.pokemones.next)
       await this.axios.get(this.pokemones.next).then(response =>{
                 this.pokemones=response.data;
               
@@ -71,33 +70,44 @@ export default {
     },
     searchPokemon(event){
       if(event.keyCode!==13){
-        this.inputTimeStamp=event.timeStamp;
-        setTimeout(()=>{
-          if(this.inputTimeStamp==event.timeStamp){
-            if(this.namePokemon.trim()!=""){
-              this.$router.push({name:'showPokemon'})
-              this.getAllPokemons()
-            }else{
-               this.getPokemonByName();
-            }
-          }
-        },500);
+        
+        if(this.timer){
+            clearTimeout(this.timer)
+        }
+        this.timer=setTimeout(()=>{
+            
+              this.getPokemonByName()
+        },300)
+          
       }else{
         console.log ('Enviar solicitud');
       }
     },
     async getPokemonByName(){
-       await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`).then(() =>{
+      if(this.cancel){
+        this.cancel()
+      }
+      let CancelToken=this.axios.CancelToken
+       await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`, {cancelToken: new CancelToken((c)=>{
+         this.cancel=c
+       })}).then(() =>{
          this.pokemones.results=[
            { 
              name: this.namePokemon,
              url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
            }
          ];
-          if(this.$route.name!="showPokemon"){
+          if(this.$route.name=="pokemonNotFound"){
             this.$router.push({name:'showPokemon'})
-        }
+          }
       }).catch(()=>{
+        if(this.namePokemon.trim()==""){
+                if(this.$route.name!=="showPokemon"){
+                    console.log("keee")
+                    this.$router.push({name:'showPokemon'})
+                    this.getAllPokemons()
+                  }
+              }else
         if(this.$route.name!="pokemonNotFound"){
           this.$router.push({name:'pokemonNotFound'})
         }
@@ -110,7 +120,6 @@ export default {
       }
        await this.axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`).then(response =>{
                 this.pokemones=response.data;
-                console.log(this.pokemones)
             }).catch(error=>{
                 console.log(error)
         })
