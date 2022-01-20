@@ -104,7 +104,11 @@ export default {
       })
     },
     async getPokemonsByPagination(pagination){
-       await this.axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${pagination*20}&limit=20`).then(response =>{
+      let offset=pagination*20;
+      if(offset==0){
+        offset="0"
+      }
+       await this.axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`).then(response =>{
                 this.pokemones=response.data;
                 console.log(this.pokemones)
             }).catch(error=>{

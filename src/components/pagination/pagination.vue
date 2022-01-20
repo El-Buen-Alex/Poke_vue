@@ -30,50 +30,32 @@ export default {
     },
     methods:{
         nextPage(){
-        //    const fin=this.pages[2]
-        //    if(fin!="56"){
-        //         this.pages=this.pages.map(e=>e+1)
-        //         this.$emit("requestNextList")
-        //         const newFinal=this.pages[2]
-        //         if(newFinal=="56"){
-        //             this.classNextButton="page-item disabled"
-        //         }
-        //         this.classPrevButton="page-item"
-        //    }else if(fin=="56"){
-        //        this.classNextButton="page-item disabled"
-        //    }
-
            if(this.actualPage<55){
+               this.actualPage=this.actualPage+1
+                console.log("acutal:"+this.actualPage)
                this.sumarPagination()
                //this.$emit("requestNextList")
-                this.$emit("goToPage",++this.actualPage+1)
+                this.$emit("goToPage",this.actualPage)
+                
            }else if(this.actualPage==56){
                this.classNextButton="page-item disabled"
            }
+            this.setAccesibilityNextPrev()
         },
          prevPage(){
-            //  const inicio=this.pages[0];
-            //  if(inicio!="1"){
-            //     this.pages=this.pages.map(e=>e-1)
-            //     this.$emit("requestPrevList")
-            //     const inicio=this.pages[0];
-            //         if(inicio==1){
-            //             this.classPrevButton=this.classPrevButton+" disabled"
-            //         }
-            //         this.classNextButton="page-item "
-            //     console.log(this.pages)
-            //  }
-            
-           if(this.actualPage==1){
-               this.classPrevButton=this.classPrevButton+" disabled"
-               this.$emit("goHome")
-           }else if(this.actualPage>1){
-               this.restarPagination()
-               //this.$emit("requestPrevList")
-               this.$emit("goToPage",this.actualPage-1)
-
-           }
-
+                if(this.actualPage>0){
+                    this.actualPage=this.actualPage-1;
+                console.log("acutal:"+this.actualPage)
+                    this.restarPagination()
+                    //this.$emit("requestPrevList")
+                    
+                    this.$emit("goToPage",this.actualPage)
+                }else if(this.actualPage==0){
+                    this.classPrevButton=this.classPrevButton+" disabled"
+                    this.$emit("goHome")
+                    
+                }
+                 this.setAccesibilityNextPrev()    
         },
         pintar(item){
             console.log(item)
@@ -83,12 +65,11 @@ export default {
             }else{
                  this.$emit("goToPage",item-1)
             }
-           
-            this.actualPage=item;
+            this.actualPage=item-1;
+            this.setAccesibilityNextPrev()
         },
         refreshPages(item){
             if(this.pages[2]>2 && this.pages[1]!=item ){
-               
                 if(this.pages[0]==item){
                     console.log("debo restar "+item)
                     this.restarPagination()
@@ -100,17 +81,22 @@ export default {
         sumarPagination(){
             if(this.pages[2]!=56){
                  this.pages=this.pages.map(e=>e+1)
-                 this.classPrevButton="page-item"
-            }else{
-                 this.classNextButton="page-item disabled"
             }
         },
         restarPagination(){
             if(this.pages[0]!=1){
                 this.pages=this.pages.map(e=>e-1) 
-                this.classNextButton="page-item "
-            }else{
+            }
+        },
+        setAccesibilityNextPrev(){
+            console.log("controlando  "+this.actualPage)
+            if(this.actualPage==0){
                 this.classPrevButton=this.classPrevButton+" disabled"
+            }else if(this.actualPage==56){
+                 this.classNextButton=this.classNextButton+" disabled"
+            }else  if(this.actualPage>0 && this.actualPage<56){
+                 this.classNextButton="page-item"
+                 this.classPrevButton="page-item"
             }
         }
     }

@@ -32,7 +32,7 @@ export default {
                     this.pokemonExist=true;
                 }
             } )
-            console.log(this.pokemonObject)
+            
         },
         showModalInfo(){
             this.$emit('sendPokemon', this.pokemonObject)
