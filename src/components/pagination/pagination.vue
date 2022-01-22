@@ -1,7 +1,7 @@
 <template>
     <nav class="d-flex justify-content-center pt-2">
-        <ul class="pagination">
-            <li @click="prevPage" :class="classPrevButton"><a class="page-link" href="#">Previous</a></li>
+        <ul class="pagination ">
+            <li @click="prevPage" :class="classPrevButton"><a class="page-link " href="#">Previous</a></li>
             <li @click="pintar" v-for="item in pages" :key="item" class="page-item "  ><a class="page-link items" :id="''+item" href="#">{{item}}</a></li>
             <li @click="nextPage" :class="classNextButton"><a class="page-link" href="#">Next</a></li>
         </ul>
@@ -100,19 +100,19 @@ export default {
             }
         },
         manageFocus(item){
-            const focusItem=" text-light bg-success"
+            const focusItem=" text-light colorDetails"
             this.removeFocus()
             item.target.classList+=focusItem
         },
         setFocusById(id){
             const item=document.getElementById(id)
-            item.classList+=" text-light bg-success"
+            item.classList+=" text-light colorDetails"
         },
         removeFocus(){
             const listItems=document.querySelectorAll(".items")
             if(listItems.length>0){
                  listItems.forEach(e=>{
-                    e.classList.remove('bg-success')
+                    e.classList.remove('colorDetails')
                     e.classList.remove('text-light')
                 })
             }
@@ -121,3 +121,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+ .colorDetails{
+        background-color: #11468F ;
+        border-color: #2a75bb;
+ }
+</style>

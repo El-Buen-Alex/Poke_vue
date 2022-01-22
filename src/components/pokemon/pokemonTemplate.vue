@@ -1,14 +1,15 @@
 <template>
-            <div v-if="pokemonExist"  class="row py-1" >
-                <div class="col-12">
-                    <img :src="pokemonObject.sprites.front_default" alt="" >
+            <div v-if="pokemonExist"  class="row py-1">
+                <div class="col-12 ">
+                    <img :src="pokemonObject.sprites.front_default" alt=""  >
                 </div>
                 <div  class="col-12">
                     <h2>{{pokemonObject.name}}</h2>
                 </div>
-                <div class="d-grid gap-2">
-                    <button @click = "showModalInfo" class="btn btn-success"><i class="fas fa-eye"></i> See Datails</button>
+                <div class="d-grid gap-2 ">
+                    <button @click = "showModalInfo" class="btn btn-success colorDetails fw-bold"><i class="fas fa-eye"></i> See Datails</button>
                 </div>
+               
             </div>
 </template>
 
@@ -45,3 +46,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+ .colorDetails{
+        background-color: #11468F ;
+        border-color: #2a75bb;
+ }
+</style>

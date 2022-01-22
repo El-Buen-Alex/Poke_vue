@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img  class="tamLogo" alt="Pokemon logo" src="./img/logoPokemon.webp">
     <div>
       <div class="container w-75 bg-success rounded-3 mb-2">
         <div class="row">
-          <div class="col-12 col-md-8">
-              <h1 class="d-flex  justify-content-center pt-3 text-light ">POKE VUE - BEST GROUP</h1>
+          <div class="col-12 col-md-8 colorRef">
+              <h1 class="d-flex  justify-content-center pt-3 text-light fw-bold ">POKE VUE - POKEDEX</h1>
           </div>
-          <div class="col-12 col-md-4 ">
+          <div class="col-12 col-md-4 colorRef">
                <div class=" input-group mb-3 pt-3" >
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
                   <input @keyup="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
@@ -137,4 +137,15 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.colorRef{
+  background-color: #F90716;
+}
+</style>
+<style scoped>
+    .tamLogo{
+            height: 200px;
+            width: 500px;
+            margin-bottom: 50px;
+    }
 </style>
