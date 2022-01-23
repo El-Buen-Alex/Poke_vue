@@ -10,7 +10,7 @@
           <div class="col-12 col-md-4 colorRef">
                <div class=" input-group mb-3 pt-3" >
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                  <input @input="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
+                  <input @keyup="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
               </div>  
           </div>
         </div>
