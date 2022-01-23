@@ -155,7 +155,7 @@ export default {
 <style scoped>
     .tamLogo{
             height: 200px;
-            width: 500px;
+            width: 600px;
             margin-bottom: 50px;
     }
 </style>
