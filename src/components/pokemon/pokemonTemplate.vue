@@ -4,7 +4,7 @@
                     <img :src="pokemonObject.sprites.front_default" alt=""  >
                 </div>
                 <div  class="col-12">
-                    <h2>{{pokemonObject.name}}</h2>
+                    <h3>{{pokemonObject.name}}</h3>
                 </div>
                 <div class="d-grid gap-2 ">
                     <button @click = "showModalInfo" class="btn btn-success colorDetails fw-bold"><i class="fas fa-eye"></i> See Datails</button>
@@ -46,7 +46,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style >
  .colorDetails{
         background-color: #11468F ;
         border-color: #2a75bb;
