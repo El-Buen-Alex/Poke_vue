@@ -10,7 +10,7 @@
           <div class="col-12 col-md-4 colorRef">
                <div class=" input-group mb-3 pt-3" >
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                  <input @keyup="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
+                  <input @input="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
               </div>  
           </div>
         </div>
@@ -76,7 +76,6 @@ export default {
             clearTimeout(this.timer)
         }
         this.timer=setTimeout(()=>{
-            
               this.getPokemonByName()
         },300)
           
@@ -88,35 +87,38 @@ export default {
       if(this.cancel){
         this.cancel()
       }
-      let CancelToken=this.axios.CancelToken
-       await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`, {cancelToken: new CancelToken((c)=>{
-         this.cancel=c
-       })}).then(() =>{
-         this.pokemones.results=[
-           { 
-             name: this.namePokemon,
-             url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
-           }
-         ];
-          if(this.$route.name=="pokemonNotFound"){
-            this.$router.push({name:'showPokemon'})
-          } 
-          this.setShowPagination(false)
-         
-      }).catch(()=>{
-        if(this.namePokemon.trim()==""){
-                if(this.$route.name!=="showPokemon"){
-                    this.$router.push({name:'showPokemon'})
-                  }
-                  this.getAllPokemons()
-                  this.setShowPagination(true)
-        }else{
-          this.setShowPagination(false) 
-          if(this.$route.name!="pokemonNotFound"){
-                this.$router.push({name:'pokemonNotFound'})
+      if(this.namePokemon.trim()==""){
+          if(this.$route.name!=="showPokemon"){
+              this.$router.push({name:'showPokemon'})
+          }
+          this.getAllPokemons()
+          this.setShowPagination(true)
+      }else{
+          let CancelToken=this.axios.CancelToken
+          await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`, {cancelToken: new CancelToken((c)=>{
+            this.cancel=c
+          })}).then(() =>{
+            this.pokemones.results=[
+              { 
+                name: this.namePokemon,
+                url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
+              }
+            ];
+              if(this.$route.name=="pokemonNotFound"){
+                this.$router.push({name:'showPokemon'})
+              } 
+              this.setShowPagination(false)
+             
+          }).catch(()=>{
+            console.log(this.namePokemon.trim())
+              this.setShowPagination(false) 
+              if(this.$route.name!="pokemonNotFound"){
+                    this.$router.push({name:'pokemonNotFound'})
+                }
             }
-        }
-      })
+          )
+      }
+    
     },
     async getPokemonsByPagination(pagination){
       let offset=pagination*20;
