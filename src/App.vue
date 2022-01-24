@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img  class="tamLogo" alt="Pokemon logo" src="./img/logoPokemon.webp">
+    <img  class="w-sm-75 w-50 mb-lg-4 mb-2" alt="Pokemon logo" src="./img/logoPokemon.webp">
     <div>
       <div class="container w-75 bg-success rounded-3 mb-2">
         <div class="row">
@@ -10,14 +10,15 @@
           <div class="col-12 col-md-4 colorRef">
                <div class=" input-group mb-3 pt-3" >
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                  <input @keyup="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
+                  <input @input="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
               </div>  
           </div>
         </div>
       </div>
-      <router-view  :pokemonList="pokemones.results" v-on:activatePagination="setShowPagination" ></router-view>
+      <router-view  :pokemonList="pokemones.results" :pokemonNameProps="namePokemon" ></router-view>
     </div>
     <paginationVue  v-if="showPagination" v-on:goHome="getAllPokemons" v-on:goToPage="getPokemonsByPagination"></paginationVue>
+     <button  @click="goToHome" v-else class="btn btn-success colorDetails mb-3">GO HOME!</button>
   </div>
 </template>
 
@@ -53,22 +54,6 @@ export default {
                 console.log(error)
             })
     },
-    // async getNextListPokemon(){
-    //   await this.axios.get(this.pokemones.next).then(response =>{
-    //             this.pokemones=response.data;
-              
-    //         }).catch(error=>{
-    //             console.log(error)
-    //         })
-    // },
-    // async getPrevListPokemon(){
-    //   await this.axios.get(this.pokemones.previous).then(response =>{
-    //             this.pokemones=response.data;
-               
-    //         }).catch(error=>{
-    //             console.log(error)
-    //         })
-    // },
     searchPokemon(event){
       if(event.keyCode!==13){
         
@@ -77,7 +62,7 @@ export default {
         }
         this.timer=setTimeout(()=>{
               this.getPokemonByName()
-        },300)
+        },250)
           
       }else{
         console.log ('Enviar solicitud');
@@ -87,28 +72,38 @@ export default {
       if(this.cancel){
         this.cancel()
       }
-      if(this.namePokemon.trim()==""){
-          if(this.$route.name!=="showPokemon"){
-              this.$router.push({name:'showPokemon'})
-          }
-          this.getAllPokemons()
-          this.setShowPagination(true)
-      }else{
+      // if(this.namePokemon.trim()===""){
+      //     if(this.$route.name!=="showPokemon"){
+      //         this.$router.push({name:'showPokemon'})
+      //     }
+      //     this.getAllPokemons()
+      //     this.setShowPagination(true)
+      // }else{
           let CancelToken=this.axios.CancelToken
           await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`, {cancelToken: new CancelToken((c)=>{
             this.cancel=c
           })}).then(() =>{
-            this.pokemones.results=[
-              { 
-                name: this.namePokemon,
-                url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
+            // if(this.namePokemon.trim()===""){
+            //     if(this.$route.name!=="showPokemon"){
+            //         this.$router.push({name:'showPokemon'})
+            //     }
+            //     this.getAllPokemons()
+            //     this.setShowPagination(true)
+            // }else{
+              if(!this.validarBusquedaVacia()){
+                   this.pokemones.results=[
+                  { 
+                    name: this.namePokemon,
+                    url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
+                  }
+                ];
+                  if(this.$route.name=="pokemonNotFound"){
+                    this.$router.push({name:'showPokemon'})
+                  } 
+                  this.setShowPagination(false)
               }
-            ];
-              if(this.$route.name=="pokemonNotFound"){
-                this.$router.push({name:'showPokemon'})
-              } 
-              this.setShowPagination(false)
-             
+           
+            // }
           }).catch(()=>{
             console.log(this.namePokemon.trim())
               this.setShowPagination(false) 
@@ -117,7 +112,8 @@ export default {
                 }
             }
           )
-      }
+          
+      // }
     
     },
     async getPokemonsByPagination(pagination){
@@ -133,6 +129,21 @@ export default {
     },
     setShowPagination(state){
         this.showPagination=state
+    },
+    validarBusquedaVacia(){
+         if(this.namePokemon.trim()===""){
+                if(this.$route.name!=="showPokemon"){
+                    this.$router.push({name:'showPokemon'})
+                }
+                this.getAllPokemons()
+                this.setShowPagination(true)
+                return true;
+         }
+      return false;
+    },
+    goToHome(){
+       this.setShowPagination(true)
+       this.$router.push({name:'showPokemon'})
     }
   }
 }
