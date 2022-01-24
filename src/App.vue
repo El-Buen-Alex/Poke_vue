@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <img  class="w-sm-75 w-50 mb-lg-4 mb-2" alt="Pokemon logo" src="./img/logoPokemon.webp">
+  <div id="app" class="mt-0 pt-3">
+    <img  class="w-sm-75 w-50 mb-lg-4 mb-2 " alt="Pokemon logo" src="./img/logoPokemon.webp">
     <div>
       <div class="container w-75 bg-success rounded-3 mb-2">
         <div class="row">
