@@ -1,7 +1,7 @@
 <template>
     <div class="container">   
             <div class="row d-flex justify-content-center mt-4">
-                <div class="card col-12 col-md-3 m-1 animate__animated animacion"  v-for="(pokemon) in pokemonList" :key="pokemon.name">
+                <div v-on:click = "showModalInfo" class="card col-12 col-md-3 m-1 animate__animated animacion pokeModal"  v-for="(pokemon) in pokemonList" :key="pokemon.name">
                     <pokemonTemplateVue :pokemon="pokemon" v-on:sendPokemon="setPokemonsInformation" ></pokemonTemplateVue>
             </div>
         </div>
@@ -22,6 +22,9 @@ export default {
         setPokemonsInformation(pokemon){
             this.pokemonInformation=pokemon;
             this.$router.push({name:'pokemonDetail'})
+        },
+        showModalInfo(){
+            this.$emit('sendPokemon', this.pokemonObject)
         }
     },
     props:{
@@ -40,5 +43,9 @@ export default {
     .animacion:hover{
         animation: pulse;
         animation-duration: 1s;
+    }
+
+    .pokeModal:hover{
+        cursor: pointer;
     }
 </style>

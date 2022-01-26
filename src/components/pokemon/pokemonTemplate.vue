@@ -1,7 +1,7 @@
 <template>
             <div v-if="pokemonExist"  class="row py-1">
                 <div  class="col-12 ">
-                    <img   :src="pokemonObject.sprites.front_default" alt=""  >
+                    <img class="fond"  :src="pokemonObject.sprites.front_default" alt=""  >
                 </div>
                 <div  class="col-12">
                     <h3 class="text-capitalize">{{pokemonObject.name}}</h3>
@@ -49,5 +49,10 @@ export default {
  .colorDetails{
         background-color: #11468F ;
         border-color: #2a75bb;
+ }
+ .fond{
+     background-image: url("../../img/blob.svg");
+     background-repeat: no-repeat;
+     background-position: center;
  }
 </style>
