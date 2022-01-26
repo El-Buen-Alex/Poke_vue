@@ -18,7 +18,7 @@
       <router-view  :pokemonList="pokemones.results" :pokemonNameProps="namePokemon" ></router-view>
     </div>
     <paginationVue  v-if="showPagination" v-on:goHome="getAllPokemons" v-on:goToPage="getPokemonsByPagination"></paginationVue>
-     <button  @click="goToHome" v-else class="btn btn-primary colorDetails mb-3">GO HOME</button>
+     <button  @click="goToHome" v-else class="btn btn-primary colorDetails  mt-4">GO HOME</button>
   </div>
 </template>
 
@@ -66,6 +66,7 @@ export default {
           
       }else{
         console.log ('Enviar solicitud');
+         this.getPokemonByName()
       }
     },
     async getPokemonByName(){
@@ -129,7 +130,8 @@ export default {
           this.$router.push({name:'showPokemon'})
        }
        this.namePokemon=""
-    }
+    },
+   
   },
   computed: {
     namePokemonSearch: function(){

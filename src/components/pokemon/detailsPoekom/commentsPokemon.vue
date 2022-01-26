@@ -4,7 +4,7 @@
             <h4 >Comentarios</h4>
         </div>
 
-        <div class="overflow-auto w-100 boxComent" v-if="commentExist" >
+        <div class="overflow-auto w-100 boxComent" id="commentsDiv" v-if="commentExist" >
             <div v-for="(comentario,index) in pokemonComment" :key="index">
                 <div class="card my-2 mx-1">
                     <p class="d-flex align-items-center justify-content-center pt-2 text-break">{{comentario}}</p>
@@ -17,7 +17,7 @@
         
         <div class="input-group mb-3 mt-2">
             <input @keypress="saveComentByKey" type="text" class="form-control"  placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
-            <button class="btn btn-primary" type="button" id="button-addon2" @click="savedComments()"><i class="fas fa-paper-plane"></i></button>
+            <button class="btn btn-primary" type="button" id="button-addon2" @click="saveComentsAndScrollDown"><i class="fas fa-paper-plane"></i></button>
         </div>
         
    </div>
@@ -35,7 +35,9 @@ export default{
     },
     created() {
         this.verificarArray()
-        
+    },
+    mounted(){
+        this.scrollDown()
     },
     props:{
         idPokemon:{
@@ -56,22 +58,32 @@ export default{
             let data = localStorage.getItem(this.idPokemon);
             this.pokemonComment = JSON.parse(data);
         },
-        savedComments(){
+       async savedComments(){
             if(this.texto.trim()!==""){
                 this.pokemonComment.push(this.texto)
                 localStorage.setItem(this.idPokemon, JSON.stringify(this.pokemonComment));
                 if (this.commentExist === false) {
                     this.commentExist = true;
-                } 
+                }
                 this.texto="";
             }
         },
-        saveComentByKey(e){
+       async saveComentByKey(e){
             if(e.keyCode==13){
-                 this.savedComments()
+                 this.saveComentsAndScrollDown()
             }
+        },
+        async saveComentsAndScrollDown(){
+            await this.savedComments().then(()=>{
+                this.scrollDown();
+            })
+        },
+         scrollDown(){
+             console.log("scrollDown")
+            const divComentarios=document.getElementById("commentsDiv")
+            divComentarios.scrollTop=divComentarios.scrollHeight
         }
-    }
+    },
 }
 </script>
 
