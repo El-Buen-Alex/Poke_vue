@@ -1,11 +1,11 @@
 <template>
     <div class="container">   
             <div class="row d-flex justify-content-center mt-4">
-                <div v-on:click = "showModalInfo" class="card col-12 col-md-3 m-1 animate__animated animacion pokeModal"  v-for="(pokemon) in pokemonList" :key="pokemon.name">
+                <div  class="card col-12 col-md-3 m-1 animate__animated animacion pokeModal"  v-for="(pokemon) in pokemonList" :key="pokemon.name">
                     <pokemonTemplateVue :pokemon="pokemon" v-on:sendPokemon="setPokemonsInformation" ></pokemonTemplateVue>
             </div>
         </div>
-        <router-view :pokemonInformation="pokemonInformation"></router-view>
+        <router-view :pokemonInformation="pokemonInformation" :backgroundProp="backgroundData"></router-view>
     </div>
 </template>
 <script>
@@ -15,17 +15,16 @@ export default {
     name:'showPokemon',
     data(){
         return {
-            pokemonInformation: Object
+            pokemonInformation: Object,
+            backgroundData: '',
         }
     },
     methods:{
-        setPokemonsInformation(pokemon){
+        setPokemonsInformation(pokemon, background){
             this.pokemonInformation=pokemon;
+            this.backgroundData=background
             this.$router.push({name:'pokemonDetail'})
         },
-        showModalInfo(){
-            this.$emit('sendPokemon', this.pokemonObject)
-        }
     },
     props:{
         pokemonList:{
