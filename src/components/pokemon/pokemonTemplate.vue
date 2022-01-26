@@ -1,10 +1,9 @@
 <template>
-            <div v-if="pokemonExist"  class="row py-1"  @click = "showModalInfo">
-                <div  class="col-12 ">
-                    
+            <div v-if="pokemonExist"  class="row py-1"  @click="showModalInfo">
+                <div  class="col-12 mt-3"> 
                     <img  class="fond" :style="' background-color:'+getFondo" :src="pokemonObject.sprites.front_default" alt=""  >
                 </div>
-                <div  class="col-12">
+                <div  class="col-12 mt-2">
                     <h3 class="text-capitalize">{{pokemonObject.name}}</h3>
                 </div>
                 <!-- <div class="d-grid gap-2 ">

@@ -1,7 +1,7 @@
 <template>
    <div class="container h-100  shadow">
         <div class="tittle">
-            <h4 >Comentarios</h4>
+            <h4 class="fw-bolder">Comentarios</h4>
         </div>
 
         <div class="overflow-auto w-100 boxComent" id="commentsDiv" v-if="commentExist" >

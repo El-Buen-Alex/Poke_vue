@@ -1,8 +1,8 @@
 <template>
-    <div class="container">   
+    <div class="container w-75">   
             <div class="row d-flex justify-content-center mt-4">
-                <div  class="card col-12 col-md-3 m-1 animate__animated animacion pokeModal"  v-for="(pokemon) in pokemonList" :key="pokemon.name">
-                    <pokemonTemplateVue :pokemon="pokemon" v-on:sendPokemon="setPokemonsInformation" ></pokemonTemplateVue>
+                <div  class="bg-light col-12 col-md-3 m-2 animate__animated animacion pokeModal rounded-3"  v-for="(pokemon) in pokemonList" :key="pokemon.name">
+                    <pokemonTemplateVue  :pokemon="pokemon" v-on:sendPokemon="setPokemonsInformation" ></pokemonTemplateVue>
             </div>
         </div>
         <router-view :pokemonInformation="pokemonInformation" :backgroundProp="backgroundData"></router-view>

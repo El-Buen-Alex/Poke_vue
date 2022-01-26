@@ -12,10 +12,10 @@
                         </div>
                     </div>
                    
-                    <h4 class="text-light">{{pokemonInformation.name}}</h4>
-                    <p class="text-light">Id = {{pokemonInformation.id}}</p>
-                    <p class="text-light">Peso = {{pokemonInformation.weight/10}} kg</p>
-                    <p class="text-light">Altura = {{pokemonInformation.height/10}} m</p>
+                    <h4 class="text-light fw-bolder">{{pokemonInformation.name}}</h4>
+                    <p class="text-light fw-bolder">Id = {{pokemonInformation.id}}</p>
+                    <p class="text-light fw-bolder">Peso = {{pokemonInformation.weight/10}} kg</p>
+                    <p class="text-light fw-bolder">Altura = {{pokemonInformation.height/10}} m</p>
                 </div>
                 <div class="col-12 col-md-6">
                     <Comments :idPokemon="pokemonInformation.id">
