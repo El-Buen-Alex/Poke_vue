@@ -1,7 +1,7 @@
 <template>
     <div class="overlay" >
-        <div class="popup" id="global" >
-            <div class="card h-100" :style="'background-color:'+fondoPokemon">
+        <div class="popup h-auto" id="global" >
+            <div class="card h-100 pb-3" :style="'background-color:'+fondoPokemon">
                 <div class="d-flex flex-row-reverse py-1 pe-1">
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
                 </div>

@@ -1,6 +1,6 @@
 <template>
     <Modal v-show="pokemonInformation" :fondoPokemon="getFondo">
-        <div class="container h-75">
+        <div class="container h-100">
             <div class="row">
                 <div class="col-12 col-md-6 ">
                     <div class="row">
