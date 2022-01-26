@@ -12,21 +12,18 @@
                         </div>
                     </div>
                    
-                    <h4>{{pokemonInformation.name}}</h4>
-                    <p>Id = {{pokemonInformation.id}}</p>
-                    <p>Peso = {{pokemonInformation.weight/10}} kg</p>
-                    <p>Altura = {{pokemonInformation.height/10}} m</p>
+                    <h4 class="text-light">{{pokemonInformation.name}}</h4>
+                    <p class="text-light">Id = {{pokemonInformation.id}}</p>
+                    <p class="text-light">Peso = {{pokemonInformation.weight/10}} kg</p>
+                    <p class="text-light">Altura = {{pokemonInformation.height/10}} m</p>
                 </div>
                 <div class="col-12 col-md-6">
                     <Comments :idPokemon="pokemonInformation.id">
                         
                     </Comments>
                 </div>
-
-            </div>
-            
-        </div>
-        
+            </div>    
+        </div>  
     </Modal>
 </template>
 

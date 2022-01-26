@@ -4,10 +4,10 @@
                     <img   :src="pokemonObject.sprites.front_default" alt=""  >
                 </div>
                 <div  class="col-12">
-                    <h3>{{pokemonObject.name}}</h3>
+                    <h3 class="text-capitalize">{{pokemonObject.name}}</h3>
                 </div>
                 <div class="d-grid gap-2 ">
-                    <button @click = "showModalInfo" class="btn btn-success colorDetails fw-bold"><i class="fas fa-eye"></i> See Datails</button>
+                    <button @click = "showModalInfo" class="btn btn-primary colorDetails fw-bold"><i class="fas fa-eye"></i> See Datails</button>
                 </div>
             </div>
 </template>

@@ -18,7 +18,7 @@
       <router-view  :pokemonList="pokemones.results" :pokemonNameProps="namePokemon" ></router-view>
     </div>
     <paginationVue  v-if="showPagination" v-on:goHome="getAllPokemons" v-on:goToPage="getPokemonsByPagination"></paginationVue>
-     <button  @click="goToHome" v-else class="btn btn-success colorDetails mb-3">GO HOME!</button>
+     <button  @click="goToHome" v-else class="btn btn-primary colorDetails mb-3">GO HOME</button>
   </div>
 </template>
 
@@ -72,24 +72,10 @@ export default {
       if(this.cancel){
         this.cancel()
       }
-      // if(this.namePokemon.trim()===""){
-      //     if(this.$route.name!=="showPokemon"){
-      //         this.$router.push({name:'showPokemon'})
-      //     }
-      //     this.getAllPokemons()
-      //     this.setShowPagination(true)
-      // }else{
           let CancelToken=this.axios.CancelToken
           await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`, {cancelToken: new CancelToken((c)=>{
             this.cancel=c
           })}).then(() =>{
-            // if(this.namePokemon.trim()===""){
-            //     if(this.$route.name!=="showPokemon"){
-            //         this.$router.push({name:'showPokemon'})
-            //     }
-            //     this.getAllPokemons()
-            //     this.setShowPagination(true)
-            // }else{
               if(!this.validarBusquedaVacia()){
                    this.pokemones.results=[
                   { 
@@ -102,8 +88,6 @@ export default {
                   } 
                   this.setShowPagination(false)
               }
-           
-            // }
           }).catch(()=>{
             console.log(this.namePokemon.trim())
               this.setShowPagination(false) 
@@ -112,9 +96,6 @@ export default {
                 }
             }
           )
-          
-      // }
-    
     },
     async getPokemonsByPagination(pagination){
       let offset=pagination*20;
@@ -143,7 +124,9 @@ export default {
     },
     goToHome(){
        this.setShowPagination(true)
+       this.getAllPokemons()
        this.$router.push({name:'showPokemon'})
+       this.namePokemon=""
     }
   }
 }
