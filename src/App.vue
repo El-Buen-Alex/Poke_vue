@@ -73,14 +73,14 @@ export default {
         this.cancel()
       }
           let CancelToken=this.axios.CancelToken
-          await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`, {cancelToken: new CancelToken((c)=>{
+          await this.axios.get(`https://pokeapi.co/api/v2/pokemon/${this.namePokemonSearch}`, {cancelToken: new CancelToken((c)=>{
             this.cancel=c
           })}).then(() =>{
               if(!this.validarBusquedaVacia()){
                    this.pokemones.results=[
                   { 
-                    name: this.namePokemon,
-                    url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemon}`
+                    name: this.namePokemonSearch,
+                    url: `https://pokeapi.co/api/v2/pokemon/${this.namePokemonSearch}`
                   }
                 ];
                   if(this.$route.name=="pokemonNotFound"){
@@ -89,7 +89,7 @@ export default {
                   this.setShowPagination(false)
               }
           }).catch(()=>{
-            console.log(this.namePokemon.trim())
+            console.log(this.namePokemonSearch.trim())
               this.setShowPagination(false) 
               if(this.$route.name!="pokemonNotFound"){
                     this.$router.push({name:'pokemonNotFound'})
@@ -112,7 +112,7 @@ export default {
         this.showPagination=state
     },
     validarBusquedaVacia(){
-         if(this.namePokemon.trim()===""){
+         if(this.namePokemonSearch.trim()===""){
                 if(this.$route.name!=="showPokemon"){
                     this.$router.push({name:'showPokemon'})
                 }
@@ -125,8 +125,15 @@ export default {
     goToHome(){
        this.setShowPagination(true)
        this.getAllPokemons()
-       this.$router.push({name:'showPokemon'})
+       if(this.$route.name!=="showPokemon"){
+          this.$router.push({name:'showPokemon'})
+       }
        this.namePokemon=""
+    }
+  },
+  computed: {
+    namePokemonSearch: function(){
+      return this.namePokemon.toLowerCase();
     }
   }
 }

@@ -1,15 +1,11 @@
 <template>
     <div class="overlay" >
         <div class="popup" id="global" >
-            <div class="card" :style="'background-color:'+fondoPokemon">
-                
+            <div class="card h-100" :style="'background-color:'+fondoPokemon">
                 <div class="d-flex flex-row-reverse py-1 pe-1">
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
                 </div>
                 <slot/>
-                <div class="pb-2 ps-2 mt-1 mt-md-2">
-                    <button class="btn btn-success" @click="closepopup">OK!</button>    
-                </div>
             </div>
         </div>
     </div>

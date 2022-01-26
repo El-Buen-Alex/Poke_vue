@@ -16,7 +16,7 @@
         </div>
         
         <div class="input-group mb-3 mt-2">
-            <input type="text" class="form-control"  placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
+            <input @keypress="saveComentByKey" type="text" class="form-control"  placeholder="Ingresa tu comentario" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="texto">
             <button class="btn btn-primary" type="button" id="button-addon2" @click="savedComments()"><i class="fas fa-paper-plane"></i></button>
         </div>
         
@@ -64,6 +64,11 @@ export default{
                     this.commentExist = true;
                 } 
                 this.texto="";
+            }
+        },
+        saveComentByKey(e){
+            if(e.keyCode==13){
+                 this.savedComments()
             }
         }
     }
