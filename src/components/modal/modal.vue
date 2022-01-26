@@ -1,6 +1,6 @@
 <template>
-    <div class="overlay" >
-        <div class="popup h-auto" id="global" >
+    <div class="overlay " >
+        <div class="popup h-auto animate__animated animate__zoomIn" id="global" >
             <div class="card h-100 pb-3" :style="'background-color:'+fondoPokemon">
                 <div class="d-flex flex-row-reverse py-1 pe-1">
                     <button type="button" class="btn-close" aria-label="Close" @click="closepopup"></button>
