@@ -1,11 +1,12 @@
 <template>
     <div  class="container my-5 my-sm-0">   
-        <img class="imgPoke img-fluid mt-3 mb-3 mb-sm-0" src="../../img/sad-pikachu.webp" alt="">
-        <div class="contenedor">
-            <img class="imgPokeFound img-fluid mb-3  mb-sm-0" src="../../img/marcoFond.png" alt="">
-            <h4 class="text-danger texto-encima mt-5 mt-sm-0 text-break">Lo siento, no hay ningún Pokémon con el nombre "{{pokemonNameProps}}".</h4>
-            <div class="centrado"></div>
-            
+        <div class="contenedor ">
+            <img class="imgPoke img-fluid mt-3 mb-0 mb-sm-0" src="../../img/sad-pikachu.webp" alt="">
+            <div class="d-flex justify-content-center tamanio" >
+                <!-- <img class="imgPokeFound img-fluid mb-3 w-100  mb-sm-0" src="../../img/marcoFond.png" alt=""> -->
+                <p class="text-danger backgroundcoment w-75 text-break fs-5 p-4 ">Lo siento, no hay ningún Pokémon con el nombre "{{pokemonNameProps}}".</p>
+              
+            </div> 
         </div>
         
          <!-- <button @click="activatePagination" class="btn btn-success colorDetails">GO HOME!</button> -->
@@ -60,20 +61,27 @@ export default {
 }
     .texto-encima{
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 250px;
+        left: 14%;
     }
-    @media (min-width: 768px) {
+    /* @media (min-width: 480px) {
          .texto-encima{
         position: absolute;
         top: 50px;
         left: 10px;
     }
-    }
+    } */
     .centrado{
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 0%;
+        left: 0%;
         transform: translate(-50%, -50%);
     }
+    .backgroundcoment{
+        
+        background-image: url('../../img/marcoFond.png');
+        background-repeat: no-repeat;
+         background-size: 100% 100%;
+    }
+    
 </style>

@@ -10,15 +10,18 @@
           <div class="col-12 col-md-4 colorRef">
                <div class=" input-group mb-3 pt-3 " >
                   <span class="input-group-text " id="basic-addon1"><i class="fas fa-search"></i></span>
-                  <input @input="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
+                  <input @input="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1" maxlength="25">
               </div>  
           </div>
         </div>
       </div>
       <router-view  :pokemonList="pokemones.results" :pokemonNameProps="namePokemon" ></router-view>
     </div>
-    <paginationVue  v-if="showPagination" v-on:goHome="getAllPokemons" v-on:goToPage="getPokemonsByPagination"></paginationVue>
-     <button  @click="goToHome" v-else class="btn btn-primary colorDetails  mt-4">GO HOME</button>
+    <div class="mb-5 pt-0 mt-lg-3 mt-0">
+          <paginationVue  v-if="showPagination" v-on:goHome="getAllPokemons" v-on:goToPage="getPokemonsByPagination"></paginationVue>
+           <button  @click="goToHome" v-else class="btn btn-primary colorDetails ">GO HOME</button>
+    </div>
+  
   </div>
 </template>
 
