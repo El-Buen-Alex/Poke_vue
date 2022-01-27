@@ -83,5 +83,7 @@ export default {
         background-repeat: no-repeat;
          background-size: 100% 100%;
     }
-    
+    .tamanio{
+        width: 500px;
+    }
 </style>
