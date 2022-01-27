@@ -2,14 +2,14 @@
   <div id="app" class="mt-0 pt-3">
     <img  class="w-sm-75 w-50 mb-lg-4 mb-2 " alt="Pokemon logo" src="./img/logoPokemon.webp">
     <div>
-      <div class="container w-75 bg-success rounded-3 mb-2">
-        <div class="row">
+      <div class="container  w-75 bg-success mb-2">
+        <div class="row ">
           <div class="col-12 col-md-8 colorRef">
               <h1 class="d-flex  justify-content-center pt-3 text-light fw-bold ">POKE VUE - POKEDEX</h1>
           </div>
           <div class="col-12 col-md-4 colorRef">
-               <div class=" input-group mb-3 pt-3" >
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+               <div class=" input-group mb-3 pt-3 " >
+                  <span class="input-group-text " id="basic-addon1"><i class="fas fa-search"></i></span>
                   <input @input="searchPokemon" v-model="namePokemon" type="text" class="form-control" placeholder="Pokemon Name" aria-label="Pokemon-name" aria-describedby="basic-addon1">
               </div>  
           </div>
