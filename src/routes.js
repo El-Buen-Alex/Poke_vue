@@ -27,7 +27,12 @@ export const routes =[
         component: pokemonNotFound
     },
     {
-        path:'*',
+        path:'/',
         redirect : '/showPokemon'
     },
+    {
+        path: '**',
+        redirect:'/showPokemon',
+    },
+   
 ]
