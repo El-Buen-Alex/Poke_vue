@@ -5,10 +5,6 @@ const pokemonNotFound=()=>import('./components/errors/pokemonNotFound.vue')
 const  showDetailsPokemonVue =()=>import( './components/pokemon/detailsPoekom/showDetailsPokemon.vue')
 export const routes =[
     {
-        path:'*',
-        redirect : '/showPokemon'
-    },
-    {
         name:'showPokemon',
         path:'/showPokemon',
         component:showPokemon,
@@ -29,5 +25,9 @@ export const routes =[
         name:'pokemonNotFound',
         path:'/notFound',
         component: pokemonNotFound
-    }
+    },
+    {
+        path:'*',
+        redirect : '/showPokemon'
+    },
 ]

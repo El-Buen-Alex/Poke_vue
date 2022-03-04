@@ -1,24 +1,24 @@
 <template>
-    <Modal v-show="pokemonInformation" :fondoPokemon="backgroundProp">
+    <Modal v-show="pokemonInformationObj" :fondoPokemon="fondo">
         <div class="container h-100">
             <div class="row">
                 <div class="col-12 col-md-6 ">
                     <div class="row">
                         <div class="col-6">
-                            <img class="h-100"  :src="pokemonInformation.sprites.front_default" alt="">
+                            <img class="h-100"  :src="pokemonInformationObj.sprites.front_default" alt="">
                         </div>
                          <div class="col-6">
-                            <img class="h-100"  :src="pokemonInformation.sprites.back_default" alt="">
+                            <img class="h-100"  :src="pokemonInformationObj.sprites.back_default" alt="">
                         </div>
                     </div>
                    
-                    <h4 class="text-light fw-bolder">{{pokemonInformation.name}}</h4>
-                    <p class="text-light fw-bolder">Id = {{pokemonInformation.id}}</p>
-                    <p class="text-light fw-bolder">Peso = {{pokemonInformation.weight/10}} kg</p>
-                    <p class="text-light fw-bolder">Altura = {{pokemonInformation.height/10}} m</p>
+                    <h4 class="text-light fw-bolder">{{pokemonInformationObj.name}}</h4>
+                    <p class="text-light fw-bolder">Id = {{pokemonInformationObj.id}}</p>
+                    <p class="text-light fw-bolder">Peso = {{pokemonInformationObj.weight/10}} kg</p>
+                    <p class="text-light fw-bolder">Altura = {{pokemonInformationObj.height/10}} m</p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <Comments :idPokemon="pokemonInformation.id">
+                    <Comments :idPokemon="pokemonInformationObj.id">
                         
                     </Comments>
                 </div>
@@ -35,26 +35,6 @@ export default {
         return{
             id: "1",
             existeFondo:false,
-            // colours: {
-            //     normal: '#A8A77A',
-            //     fire: '#EE8130',
-            //     water: '#6390F0',
-            //     electric: '#F7D02C',
-            //     grass: '#7AC74C',
-            //     ice: '#96D9D6',
-            //     fighting: '#C22E28',
-            //     poison: '#A33EA1',
-            //     ground: '#E2BF65',
-            //     flying: '#A98FF3',
-            //     psychic: '#F95587',
-            //     bug: '#A6B91A',
-            //     rock: '#B6A136',
-            //     ghost: '#735797',
-            //     dragon: '#6F35FC',
-            //     dark: '#705746',
-            //     steel: '#B7B7CE',
-            //     fairy: '#D685AD',
-            // },
         }
     },
     components: {
@@ -63,30 +43,38 @@ export default {
     },
     props:{
         pokemonInformation:{
-            type:Object,
+            
         },
         backgroundProp:{
             type:String,
-            required:true
+            default:''
         }
     },
     methods: {
        
-      
     },
     mounted() {
+        if(this.pokemonInformation.abilities){
+            localStorage.setItem("pokemonInformation", JSON.stringify(this.pokemonInformation))
+            localStorage.setItem("backgroundProp", JSON.stringify(this.backgroundProp))
+        }
     },
-    // computed: {
-    //     getFondo:function(){
-    //         let tipo = this.pokemonInformation.types[0].type.name;
-    //         for (const property in this.colours) {
-    //             if(tipo==property){
-    //                 return this.colours[property];
-    //             }
-    //         }
-    //         return ""  
-    //     }
-    // },
+    computed:{
+        pokemonInformationObj(){
+            if(!this.pokemonInformation.abilities){
+                console.log("ola")
+                return JSON.parse(localStorage.getItem("pokemonInformation"))
+                
+            }
+            return this.pokemonInformation;
+        },
+        fondo(){
+            if(this.backgroundProp==''){
+                return JSON.parse(localStorage.getItem('backgroundProp'))
+            }
+            return this.backgroundProp
+        }
+    }
 }
 </script>
 
