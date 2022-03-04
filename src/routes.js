@@ -5,7 +5,7 @@ const pokemonNotFound=()=>import('./components/errors/pokemonNotFound.vue')
 const  showDetailsPokemonVue =()=>import( './components/pokemon/detailsPoekom/showDetailsPokemon.vue')
 export const routes =[
     {
-        name:'/',
+        name:'showPokemon',
         path:'/showPokemon',
         component:showPokemon,
         children:[
